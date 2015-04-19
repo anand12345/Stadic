@@ -1,0 +1,77 @@
+body {
+    background: #e6e6e6;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    font-family: 'century gothic', sans-serif;
+    text-decoration: underline;
+    font-size: 6em;
+    padding: 80px 0;
+}
+
+.card {
+    margin: auto;
+    background: #fff;
+    border-radius: 25px;
+    padding: 25px;
+    max-width: 768px;
+}
+
+h3 {
+    font-family: Arial, sans-serif;
+    color: #808080;
+    text-align: center;
+    margin: 10px;
+}
+
+.userInput {
+    display: block;
+    padding: 15px 30px;
+    width: 80%;
+    margin: 25px auto;
+    border-radius: 5px;
+    border: 1px solid #e6e6e6;
+    color: #808080;
+    font-size: 18px;
+    font-family: arial, sans-serif;
+/*    letter-spacing: 1px;*/
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #ccc;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #ccc;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #ccc;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color:    #ccc;
+}
+
+.button {
+    display: block;
+    margin: 50px auto;
+    width: 80%;
+    padding: 15px;
+    background: #e6e6e6;
+    border: 0;
+    color: #666;
+    font-size: 20px;
+    border-radius: 8px;
+/*    box-shadow: 0px 2px 5px #ddd; */
+}
+
+p {
+    text-align: center;
+    font-size: 20px;
+    font-family: arial, sans-serif;
+    color: #999;
+}
+
+p a, p a:hover {
+    color: #666;
+}

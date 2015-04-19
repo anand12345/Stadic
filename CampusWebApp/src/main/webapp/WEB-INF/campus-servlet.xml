@@ -40,6 +40,7 @@ destroy-method="close">
         <beans:property name="annotatedClasses">
             <beans:list>
                 <beans:value>com.resoneuronance.campus.web.domain.College</beans:value>
+            	<beans:value>com.resoneuronance.campus.web.domain.Department</beans:value>
             </beans:list>
         </beans:property>
         <beans:property name="hibernateProperties">
@@ -68,6 +69,18 @@ destroy-method="close">
      
     <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </beans:bean>
+    
+    <!-- For Excel Upload -->
+    
+    <beans:bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <beans:property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+         
+        <!-- max size of file in memory (in bytes) -->
+        <beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+ 
     </beans:bean>
  
 </beans:beans>
