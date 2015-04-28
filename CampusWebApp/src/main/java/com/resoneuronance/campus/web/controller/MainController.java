@@ -1,7 +1,5 @@
 package com.resoneuronance.campus.web.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -15,7 +13,6 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.resoneuronance.campus.web.bo.CollegeBO;
 import com.resoneuronance.campus.web.domain.College;
-import com.resoneuronance.campus.web.domain.Department;
 import com.resoneuronance.campus.web.util.FileUtils;
 
 @Controller
@@ -75,7 +72,7 @@ public class MainController {
 		// collegeBo.getColleges().get(collegeBo.getColleges().size()-1));
 		model.addAttribute("college", new College());
 		model.addAttribute("colleges", collegeBo.getCollegeNames());
-		return "login";
+		return "admin_profile";
 
 	}
 
