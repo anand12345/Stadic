@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,21 +17,39 @@
     <title>Teacher Information</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     
-    <link href="css/teacher_profile.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bree-serif-font.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/teacher_profile.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bree-serif-font.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.min.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bootstrap-theme.min.css"/>" rel="stylesheet">
+    
+   <%-- <style>
+     <%@ include file="css/teacher_profile.css"%>
+     <%@ include file="css/bootstrap.css"%>
+     <%@ include file ="css/bootstrap.min.css" %>
+     <%@ include file="css/bootstrap-theme.min.css"%>
+     <%@ include file="css/font-awesome.css"%>
+     <%@ include file="css/font-awesome.min.css"%>
+     <%@ include file="css/bree-serif-font.css"%>
+    </style>--%>
+    
+    <!-- jQuery -->
+<!--    <script src="js/jquery.js"></script>-->
 
+    <!-- Bootstrap Core JavaScript -->
+<!--    <script src="js/bootstrap.min.js"></script>-->
+
+   <%--  <%@include file="js/jquery.js" %>
+    <%@include file="js/bootstrap.min.js" %>
+    <%@include file="js/admin.js" %> --%>
+    
+    
 </head>
-    
-    
 <body>
-    
     <div  class="container" id="profile-content">
         <div class="row">
               <div class="container-fluid heading1">
@@ -47,27 +70,20 @@
                 <div class="container-fluid posts">
                     <div class="row">
                         <div class="col-md-12 heading">
-                            <form name="" method="Post" >
+                            <form:form name="" method="Post" action="addTeacher" commandName="teacher" >
                                 <label class="col-md-12">Teacher Information</label>
                                 <span></span>
                                 <div class="col-md-12 data">
                                     <label class="col-md-5">Name</label>
-                                    <input type="text" name="sname"/>
+                                    <form:input type="text" path="name" name="sname"/>
                                 </div>
-
-<!--
-                                <div class="col-md-12 data">
-                                    <label class="col-md-5">Roll no.</label>
-                                    <input type="text" name="rollno"/>
-                                </div>
--->
 
                                 <div class="col-md-12 data">
                                     <label class="col-md-5">Email</label>
-                                    <input type="text" name="email"/>
+                                    <form:input type="text" path="email" name="email"/>
                                 </div>
 
-                                <div class="col-md-12 data">
+                                <!-- <div class="col-md-12 data">
                                     <label class="col-md-5">Mobile no.</label>
                                     <input type="text" name="mobile"/>
                                 </div>
@@ -75,21 +91,13 @@
                                 <div class="col-md-12 data">
                                     <label class="col-md-5">Department</label>
                                     <input type="text" name="department"/>
-                                </div>
-
-<!--
-                                <div class="col-md-12 data">
-                                    <input type="button" name="submit" value="SUBMIT"/>
-                                    <input type="reset" name="clear" value="CLEAR"/>
-                                </div>
--->
-<!--                                 <span></span>-->
+                                </div> -->
                                 <div class="col-md-12 notes3 select">
-                                    <input type="button" name="" class="btn btn-default button" value="Submit"/>
+                                    <input type="submit" name="" class="btn btn-default button" value="Submit"/>
                                     <input type="reset" name="" class="btn btn-default button" value="Reset"/>
                                 </div>
                                 
-                           </form>
+                           </form:form>
                         </div>
                     </div>
                 </div>
@@ -98,16 +106,10 @@
                 
             </div>
         </div>
-    </div>
     
         <!-- /.container -->
 
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+    
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({

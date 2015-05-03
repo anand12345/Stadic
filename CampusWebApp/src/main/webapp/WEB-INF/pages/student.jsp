@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +17,38 @@
     <title>Student Profile</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     
-    <link href="css/student_profile.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bree-serif-font.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">   
+    <link href="<c:url value = "/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/student_profile.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bree-serif-font.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.min.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bootstrap-theme.min.css"/>" rel="stylesheet">
+    
+    
+    <%-- <style>
+     <%@ include file="css/student_profile.css"%>
+     <%@ include file="css/bootstrap.css"%>
+     <%@ include file ="css/bootstrap.min.css" %>
+     <%@ include file="css/bootstrap-theme.min.css"%>
+     <%@ include file="css/font-awesome.css"%>
+     <%@ include file="css/font-awesome.min.css"%>
+     <%@ include file="css/bree-serif-font.css"%>
+    </style> --%>
+     <!-- jQuery -->
+<!--    <script src="js/jquery.js"></script>-->
 
+    <!-- Bootstrap Core JavaScript -->
+<%-- <!--    <script src="js/bootstrap.min.js"></script>-->
+
+           <%--  <%@include file="js/jquery.js" %>
+            <%@include file="js/bootstrap.min.js" %>
+            <%@include file="js/admin.js" %> --%>
+
+            
+            
 </head>
     
     
@@ -57,10 +84,15 @@
                                 </form>
                             </div>
                         <div class="col-md-12">
-                            <a class="btn btn-primary btn-lg" href="studentadd.jsp" role="button">Add more</a>
+                            <a class="btn btn-primary btn-lg" href="studentadd" role="button">Add more</a>
 
                         <div class="jumbotron">
-                          
+                          <c:forEach var="student" items="${students}">
+							<form:form action="${student.id}.student" method="POST">
+								${student.name}
+							<input type="submit" value="Delete" size="50" /><br>
+							</form:form>
+						</c:forEach>
 
                         </div>
                         </div>
@@ -68,12 +100,8 @@
                 </div>
             </div>
                     <!-- /.container -->
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+   		</div>
+   	</div>
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({

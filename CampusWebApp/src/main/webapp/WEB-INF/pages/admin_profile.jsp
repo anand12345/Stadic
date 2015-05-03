@@ -20,21 +20,20 @@
     <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
     
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    
-    <%-- <link href="<c:url value = "WEB-INF/pages/css/admin_profile.css"/>" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bree-serif-font.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet"> --%>
+    <link href="<c:url value = "/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/admin_profile.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/bree-serif-font.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.css"/>" rel="stylesheet">
+    <link href="<c:url value = "/resources/css/font-awesome.min.css"/>" rel="stylesheet">
     
     <script src="js/admin.js"></script>
-    <style>
+    <%-- <style>
      <%@ include file = "css/bootstrap.min.css" %>
      <%@ include file = "css/admin_profile.css" %>
-     <%@ include file="css/font-awesome.css"%>
      <%@ include file="css/bree-serif-font.css"%>
      <%@ include file="css/font-awesome.css"%>
-     <%@ include file="css/font-awesome.min.css"%>
+     <%@ include file="css/font-awesome.min.css"%> --%>
 </style>
 </head>
     
@@ -48,8 +47,9 @@
                 <span class="glyphicon glyphicon-th-list pull-left"></span>
                 </a>
                 <div class="pull-right">
-                    <a href="">Prof. XYZ</a>
-                    <a href="">
+                	${college.name}
+                    <a href="">Admin</a>
+                    <a href="logout">
                     <span class="glyphicon glyphicon-off"></span>
                     </a>
                     <a href="">
@@ -108,23 +108,26 @@
                             
                             <div class="col-md-12">                              
                                 <div class="col-md-12 filediv">
+                                <form method="post" action="uploadStudents" enctype="multipart/form-data">                  
                                         <label for="name" class="col-md-4">Student:</label>
-                                        <input type="file" class="file col-md-4 col-xs-12 "/>
-<!--                                    <input type="file" accept="application/vnd.ms-excel"
- class="file col-md-4 col-xs-12" />-->
-
-                                        <a href="" class="col-md-4 "><input type="button" name="student" class="btn btn-default  button" value="Submit"/></a>
+                                        <input type="file" name = "studentsFile" class="file col-md-4 col-xs-12 "/>
+                                        <a href="" class="col-md-4 "><input type="submit" name="student" class="btn btn-default  button" value="Submit"/></a>
+                               </form>
                                 </div>
-                                <div class="col-md-12 filediv">                    
+                                <div class="col-md-12 filediv">  
+                                	<form method="post" action="uploadTeachers" enctype="multipart/form-data">                  
                                         <label for="name" class="col-md-4">Teacher:</label>
-                                        <input type="file" class="file col-md-4 col-xs-12 "/>
-                                        <a href="" class="col-md-4"><input type="button" name="teacher" class="btn btn-default  button" value="Submit"/></a>
+                                        <input type="file" name="teachersFile"  class="file col-md-4 col-xs-12 "/>
+                                        <a href="" class="col-md-4"><input type="submit" name="teacher" class="btn btn-default  button" value="Submit"/></a>
+                                	</form>
                                 </div>
                                 <div class="col-md-12 filediv">
-                                     <label for="name" class="col-md-4">Department:</label>
-                                     <input type="file" name="pic" class="file col-md-4 col-xs-12 "/>
-                                     <a href="" class="col-md-4"><input type="button" name="department" class="btn btn-default button " value="Submit"/></a>
-                                </div>
+                                	<form method="post" action="uploadDepartments" enctype="multipart/form-data">
+										<label for="name" class="col-md-4">Department:</label>
+                                     	<input type="file" name="departmentsFile" class="file col-md-4 col-xs-12 "/>
+                                     	<a href="" class="col-md-4"><input type="submit" name="department" class="btn btn-default button " value="Submit"/></a>
+									</form>
+                                     </div>
 <!--                              </div>-->
                            </div>
                         </div>
@@ -140,15 +143,15 @@
                         <div class="col-md-12">
                             <span></span>
                             <div class="col-md-4 notes3 select">
-                                <a href="student.jsp"><input type="button" name="student" class="btn btn-default button" value="student"/></a>
+                                <a href="student.htm"><input type="button" name="student" class="btn btn-default button" value="student"/></a>
                             </div>
                             <span></span>
                              <div class="col-md-4 notes3 select">
-                                 <a href="teacher.jsp"><input type="button" name="teacher" class="btn btn-default button" value="teacher"/></a>
+                                 <a href="teacher.htm"><input type="button" name="teacher" class="btn btn-default button" value="teacher"/></a>
                             </div>
                             <span></span>
                              <div class="col-md-3 notes3 select">
-                                 <a href="department.jsp"><input type="button" name="department" class="btn btn-default button" value="department"/></a>
+                                 <a href="department.htm"><input type="button" name="department" class="btn btn-default button" value="department"/></a>
                              </div>
 
                         </div>

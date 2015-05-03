@@ -11,6 +11,8 @@ import org.hibernate.type.Type;
 
 import com.resoneuronance.campus.web.domain.College;
 import com.resoneuronance.campus.web.domain.Department;
+import com.resoneuronance.campus.web.domain.Student;
+import com.resoneuronance.campus.web.domain.Teacher;
 
 public class CollegeDAOImpl implements CollegeDAO {
 
@@ -102,26 +104,92 @@ public class CollegeDAOImpl implements CollegeDAO {
 		session.close();
 	}
 
-
-/*	public static void main(String[] args) {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-				"spring.xml");
-
-		CollegeDAO collegeDAO = context.getBean(CollegeDAO.class);
-
-		College college = new College();
-		college.setName("IIN");
-		collegeDAO.save(college);
-
-		System.out.println("saved!");
-		
-		List<College> list = collegeDAO.getAllColleges();
-
-		for (College p : list) {
-			System.out.println("Person List::" + p);
-		}
-		// close resources
-		context.close();
+	@Override
+	public List<Teacher> getAllTeachers(int collegeId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Teacher T where T.collegeId=:id");
+		query .setParameter("id", collegeId);
+		List<Teacher> teachers = query.list();
+		System.out.println("No of Departments:" + teachers.size());
+		session.close();
+		return teachers;
 	}
-*/
+
+	@Override
+	public void addTeachers(List<Teacher> teachers) {
+		Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        for(Teacher teacher:teachers) {
+        	session.persist(teacher);
+        }
+        
+        tx.commit();
+        session.close();
+		
+	}
+
+	@Override
+	public void addTeacher(Teacher teacher) {
+		Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.persist(teacher);
+        tx.commit();
+        session.close();
+	}
+
+	@Override
+	public void deleteTeacher(int teacherId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("DELETE from Teacher T where T.id=:id");
+		query.setParameter("id", teacherId);
+		query.executeUpdate();
+		session.close();
+		
+	}
+
+	@Override
+	public List<Student> getAllStudents(int collegeId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Student T where T.collegeId=:id");
+		query .setParameter("id", collegeId);
+		List<Student> students = query.list();
+		System.out.println("No of Students:" + students.size());
+		session.close();
+		return students;
+	}
+
+	@Override
+	public void addStudents(List<Student> students) {
+		Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        
+        for(Student student:students) {
+        	session.persist(student);
+        }
+        
+        tx.commit();
+        session.close();
+		
+	}
+
+	@Override
+	public void addStudent(Student student) {
+		Session session = this.sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+        session.persist(student);
+        tx.commit();
+        session.close();		
+	}
+
+	@Override
+	public void deleteStudent(int studentId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("DELETE from Student T where T.id=:id");
+		query.setParameter("id", studentId);
+		query.executeUpdate();
+		session.close();
+	}
+	
+
 }

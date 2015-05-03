@@ -11,18 +11,20 @@
 
     <title>Dept Profile</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    
+    <!-- Bootstrap Core CSS -->    
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     
-    <link href="css/dept_profile.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/bree-serif-font.css" rel="stylesheet">
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    
-    
+ 	<style>
+     <%@ include file="css/teacher_profile.css"%>
+     <%@ include file="css/dept_profile.css"%>
+     <%@ include file="css/bootstrap.css"%>
+     <%@ include file ="css/bootstrap.min.css" %>
+     <%@ include file="css/bootstrap-theme.min.css"%>
+     <%@ include file="css/font-awesome.css"%>
+     <%@ include file="css/font-awesome.min.css"%>
+     <%@ include file="css/bree-serif-font.css"%>
+    </style>
+ 
 
 </head>
     
@@ -121,11 +123,17 @@
         <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+<!--    <script src="js/jquery.js"></script>-->
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+<!--    <script src="js/bootstrap.min.js"></script>-->
 
+        <%@include file="js/jquery.js" %>
+        <%@include file="js/bootstrap.min.js" %>
+        <%@include file="js/admin.js" %>
+
+    
+    
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({

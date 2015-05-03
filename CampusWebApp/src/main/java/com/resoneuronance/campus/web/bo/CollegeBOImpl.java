@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.resoneuronance.campus.web.dao.CollegeDAO;
 import com.resoneuronance.campus.web.domain.College;
 import com.resoneuronance.campus.web.domain.Department;
+import com.resoneuronance.campus.web.domain.Student;
+import com.resoneuronance.campus.web.domain.Teacher;
 
 public class CollegeBOImpl implements CollegeBO {
 
@@ -17,6 +19,8 @@ public class CollegeBOImpl implements CollegeBO {
 	private CollegeDAO collegeDao;
 	private College currentCollege;
 	private List<Department> currentDepartments;
+	private List<Teacher> currentTeachers;
+	private List<Student> currentStudents;
 
 	public College getCurrentCollege() {
 		return currentCollege;
@@ -67,6 +71,7 @@ public class CollegeBOImpl implements CollegeBO {
 				&& StringUtils.equals(college.getPassword(), currentCollege.getPassword())) {
 			System.out.println("Id B4:" + college.getId());
 			updateDepartments();
+			updateTeachers();
 			return true;
 		}
 		return false;
@@ -74,11 +79,15 @@ public class CollegeBOImpl implements CollegeBO {
 
 	@Override
 	public void addDepartments(List<Department> departments) {
+		for(Department dept:departments) {
+			dept.setCollegeId(currentCollege.getId());
+		}
 		collegeDao.addDepartments(departments);
 		updateDepartments();
 	}
 
 	public List<Department> getCurrentDepartments() {
+		updateDepartments();
 		return currentDepartments;
 	}
 
@@ -94,6 +103,78 @@ public class CollegeBOImpl implements CollegeBO {
 
 	private void updateDepartments() {
 		currentDepartments = collegeDao.getAllDepartments(currentCollege.getId());
+	}
+
+	@Override
+	public void addDepartment(Department department) {
+		department.setCollegeId(currentCollege.getId());
+		collegeDao.addDepartment(department);
+		updateDepartments();
+	}
+
+	@Override
+	public void addTeachers(List<Teacher> teachers) {
+		for(Teacher teacher:teachers) {
+			teacher.setCollegeId(currentCollege.getId());
+		}
+		collegeDao.addTeachers(teachers);
+		updateTeachers();
+	}
+
+	private void updateTeachers() {
+		currentTeachers = collegeDao.getAllTeachers(currentCollege.getId());
+	}
+
+	@Override
+	public List<Teacher> getCurrentTeachers() {
+		updateTeachers();
+		return currentTeachers;
+	}
+
+	@Override
+	public void deleteTeacher(String id) {
+		collegeDao.deleteTeacher(Integer.parseInt(id));
+		updateTeachers();		
+	}
+
+	@Override
+	public void addTeacher(Teacher teacher) {
+		teacher.setCollegeId(currentCollege.getId());
+		collegeDao.addTeacher(teacher);
+		updateTeachers();
+		
+	}
+
+	@Override
+	public void addStudents(List<Student> students) {
+		for(Student student:students) {
+			student.setCollegeId(currentCollege.getId());
+		}
+		collegeDao.addStudents(students);
+		updateStudents();		
+	}
+
+	private void updateStudents() {
+		currentStudents = collegeDao.getAllStudents(currentCollege.getId());
+	}
+
+	@Override
+	public List<Student> getCurrentStudents() {
+		updateStudents();
+		return currentStudents;
+	}
+
+	@Override
+	public void deleteStudent(String id) {
+		collegeDao.deleteStudent(Integer.parseInt(id));
+		updateStudents();
+	}
+
+	@Override
+	public void addStudent(Student student) {
+		student.setCollegeId(currentCollege.getId());
+		collegeDao.addStudent(student);
+		updateStudents();		
 	}
 	
 
