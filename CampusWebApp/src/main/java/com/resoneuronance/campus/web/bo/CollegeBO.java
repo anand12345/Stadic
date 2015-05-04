@@ -8,7 +8,7 @@ import com.resoneuronance.campus.web.domain.Student;
 import com.resoneuronance.campus.web.domain.Teacher;
 
 public interface CollegeBO {
-	//College business interface
+	//College business Interface
 	
 	public List<College> getColleges();
 	public void addNew(College college);
