@@ -17,15 +17,20 @@ public interface CollegeDAO {
 	void addDepartments(List<Department> department);
 	public List<Department> getAllDepartments(int collegeId);
 	public void deleteDepartment(int departmentId);
+	Department getDepartment(int studentId);
+	void updateDepartment(Department department);
 	
 	public List<Teacher> getAllTeachers(int collegeId);
 	public void addTeachers(List<Teacher> teachers);
 	public void addTeacher(Teacher teacher);
 	public void deleteTeacher(int teacherId);
+	Teacher getTeacher(int teacherId);
+	void updateTeacher(Teacher teacher);
 	
 	public List<Student> getAllStudents(int collegeId);
 	public void addStudents(List<Student> students);
 	public void addStudent(Student student);
 	public void deleteStudent(int studentId);
-
+	Student getStudent(int studentId);
+	void updateStudent(Student student);
 }

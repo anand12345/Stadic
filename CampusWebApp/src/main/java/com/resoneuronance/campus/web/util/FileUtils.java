@@ -1,5 +1,9 @@
 package com.resoneuronance.campus.web.util;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.resoneuronance.campus.web.bo.CollegeBO;
 import com.resoneuronance.campus.web.domain.Department;
@@ -20,10 +25,31 @@ import com.resoneuronance.campus.web.domain.Teacher;
 
 public class FileUtils {
 	
+	private static final String ROOT_FOLDER = "src/main/resources/";
 	private static final int START_CELL_INDEX = 0;
 	private static final int START_ROW_INDEX = 0;
 	private static final int SHEET_INEDX = 0;
 
+	public static void  uploadTeacherDocument(MultipartFile file,com.resoneuronance.campus.web.bo.domain.Teacher teacher) throws IOException {
+		if(file.isEmpty()) {
+			return;
+		}
+		byte[] bytes = file.getBytes();
+		if(teacher.getCollege() == null) {
+			return;
+		}
+		String dirPath =  ROOT_FOLDER +  teacher.getCollege().getId() + "/" + teacher.getId();
+		File dir = new File(dirPath);
+		dir.mkdirs();
+		String documentPath = dirPath +  "/" + file.getOriginalFilename();
+		File document = new File(documentPath);
+		BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(document));
+		stream.write(bytes);
+		stream.close();
+		teacher.getCurrentNotification().setFilePath(documentPath);
+	}
+	
+	
 	public static String uploadDepartmentsExcel(InputStream is, CollegeBO collegeBo) {
 		Workbook wb = null;
 		String result = "";

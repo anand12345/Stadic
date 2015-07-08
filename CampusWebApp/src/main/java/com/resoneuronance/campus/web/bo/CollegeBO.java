@@ -20,16 +20,21 @@ public interface CollegeBO {
 	public List<Department> getCurrentDepartments();
 	public void deleteDepartment(String id);
 	public void addDepartment(Department department);
+	public Department getDepartment(int id);
+	public void editDepartment(Department department);
 	
 	public void addTeachers(List<Teacher> teachers);
 	public List<Teacher> getCurrentTeachers();
 	public void deleteTeacher(String id);
 	public void addTeacher(Teacher teacher);
+	public Teacher getTeacher(int id);
+	public void editTeacher(Teacher teacher);
 	
 	public void addStudents(List<Student> students);
 	public List<Student> getCurrentStudents();
 	public void deleteStudent(String id);
 	public void addStudent(Student student);
-	
+	public Student getStudent(int id);
+	public void editStudent(Student student);
 	
 }

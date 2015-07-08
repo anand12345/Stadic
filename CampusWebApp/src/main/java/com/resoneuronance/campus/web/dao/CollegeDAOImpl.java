@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.type.Type;
 
 import com.resoneuronance.campus.web.domain.College;
 import com.resoneuronance.campus.web.domain.Department;
@@ -189,6 +188,77 @@ public class CollegeDAOImpl implements CollegeDAO {
 		query.setParameter("id", studentId);
 		query.executeUpdate();
 		session.close();
+	}
+	
+	@Override
+	public Student getStudent(int studentId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Student D where D.id=:id");
+		query .setParameter("id", studentId);
+		List<Student> students = query.list();
+		session.close();
+		if(CollectionUtils.isEmpty(students)) {
+			return new Student();
+		}
+		return students.get(0);
+	}
+
+	@Override
+	public void updateStudent(Student student) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("update Student D SET D.name=:name,D.email=:email where D.id=:id");
+		query .setParameter("id", student.getId());
+		query.setParameter("name", student.getName());
+		query.setParameter("email", student.getEmail());
+		query.executeUpdate();
+		session.close();
+	}
+
+	@Override
+	public Department getDepartment(int departmentId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Department D where D.id=:id");
+		query .setParameter("id", departmentId);
+		List<Department> departments = query.list();
+		session.close();
+		if(CollectionUtils.isEmpty(departments)) {
+			return new Department();
+		}
+		return departments.get(0);
+	}
+
+	@Override
+	public void updateDepartment(Department department) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("update Department D SET D.name=:name where D.id=:id");
+		query .setParameter("id", department.getId());
+		query.setParameter("name", department.getName());
+		query.executeUpdate();
+		session.close();		
+	}
+
+	@Override
+	public Teacher getTeacher(int teacherId) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from Teacher D where D.id=:id");
+		query .setParameter("id", teacherId);
+		List<Teacher> teachers = query.list();
+		session.close();
+		if(CollectionUtils.isEmpty(teachers)) {
+			return new Teacher();
+		}
+		return teachers.get(0);
+	}
+
+	@Override
+	public void updateTeacher(Teacher teacher) {
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("update Teacher D SET D.name=:name,D.email=:email where D.id=:id");
+		query .setParameter("id", teacher.getId());
+		query.setParameter("name", teacher.getName());
+		query.setParameter("email", teacher.getEmail());
+		query.executeUpdate();
+		session.close();		
 	}
 	
 

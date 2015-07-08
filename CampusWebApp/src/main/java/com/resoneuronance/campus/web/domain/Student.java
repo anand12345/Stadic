@@ -26,6 +26,28 @@ public class Student {
 	
 	@Column(name = "college_id")
 	private int collegeId;
+	
+	@Column(name = "dept_id")
+	private int departmentId;
+	
+	@Column(name = "year")
+	private String year;
+
+	public String getYear() {
+		return year;
+	}
+
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public int getDepartmentId() {
+		return departmentId;
+	}
+
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
 
 	public int getCollegeId() {
 		return collegeId;

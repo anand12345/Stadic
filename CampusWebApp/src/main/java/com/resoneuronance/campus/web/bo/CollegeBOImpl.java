@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.resoneuronance.campus.web.dao.CollegeDAO;
 import com.resoneuronance.campus.web.domain.College;
@@ -149,6 +148,7 @@ public class CollegeBOImpl implements CollegeBO {
 	public void addStudents(List<Student> students) {
 		for(Student student:students) {
 			student.setCollegeId(currentCollege.getId());
+			student.setDepartmentId(0);
 		}
 		collegeDao.addStudents(students);
 		updateStudents();		
@@ -173,9 +173,39 @@ public class CollegeBOImpl implements CollegeBO {
 	@Override
 	public void addStudent(Student student) {
 		student.setCollegeId(currentCollege.getId());
+		student.setDepartmentId(0);
 		collegeDao.addStudent(student);
 		updateStudents();		
 	}
-	
+
+	@Override
+	public Student getStudent(int studentId) {
+		return collegeDao.getStudent(studentId);
+	}
+
+	@Override
+	public void editStudent(Student student) {
+		collegeDao.updateStudent(student);
+	}
+
+	@Override
+	public Department getDepartment(int id) {
+		return collegeDao.getDepartment(id);
+	}
+
+	@Override
+	public void editDepartment(Department department) {
+		collegeDao.updateDepartment(department);
+	}
+
+	@Override
+	public Teacher getTeacher(int id) {
+		return collegeDao.getTeacher(id);
+	}
+
+	@Override
+	public void editTeacher(Teacher teacher) {
+		collegeDao.updateTeacher(teacher);
+	}
 
 }
