@@ -13,7 +13,7 @@
         
     <!-- Handles HTTP GET requests for /resources/** by efficiently serving 
         up static resources in the ${webappRoot}/resources directory -->
-    <mvc:resources mapping="/resources/**" location="/resources/design/" />
+    <mvc:resources mapping="/resources/**" location="/resources/assets/" />
     
     <mvc:resources mapping="/data/**" location="/resources/data/" />
     
@@ -71,6 +71,11 @@
             	<value>com.resoneuronance.campus.web.domain.Department</value>
             	<value>com.resoneuronance.campus.web.domain.Teacher</value>
             	<value>com.resoneuronance.campus.web.domain.Student</value>
+            	<value>com.resoneuronance.campus.web.domain.TeacherToDepartmentMapping</value>
+            	<value>com.resoneuronance.campus.web.domain.StudentToTeacherMapping</value>
+            	<value>com.resoneuronance.campus.web.domain.StudentToDepartmentMapping</value>
+            	<value>com.resoneuronance.campus.web.domain.Notification</value>
+            	<value>com.resoneuronance.campus.web.domain.StudentRegID</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -78,6 +83,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
                 </prop>
                 <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>
@@ -86,6 +92,22 @@
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
     </bean>
     <bean id="collegeBO" class="com.resoneuronance.campus.web.bo.CollegeBOImpl">
+        <property name="collegeDao" ref="collegeDAO"></property>
+    </bean>
+    
+    <bean id="teacherDAO" class="com.resoneuronance.campus.web.dao.TeacherDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="teacherBO" class="com.resoneuronance.campus.web.bo.TeacherBOImpl">
+        <property name="teacherDao" ref="teacherDAO"></property>
+        <property name="collegeDao" ref="collegeDAO"></property>
+    </bean>
+    
+    <bean id="studentDAO" class="com.resoneuronance.campus.web.dao.StudentDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="studentBO" class="com.resoneuronance.campus.web.bo.StudentBOImpl">
+        <property name="studentDao" ref="studentDAO"></property>
         <property name="collegeDao" ref="collegeDAO"></property>
     </bean>
     

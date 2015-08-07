@@ -3,7 +3,6 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.resoneuronance.campus.web</groupId>
 	<artifactId>CampusWebApp</artifactId>
-	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>Campus Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -28,11 +27,8 @@
 			<version>${junit.version}</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
+			<version>2.5</version> </dependency> -->
 
 		<!-- Spring Core -->
 		<dependency>
@@ -172,6 +168,43 @@
 			<version>3.7</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ganyo</groupId>
+			<artifactId>gcm-server</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-rest-template</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.android</groupId>
+			<artifactId>spring-android-core</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -216,4 +249,5 @@
 		</plugins>
 
 	</build>
+	<packaging>war</packaging>
 </project>

@@ -32,6 +32,14 @@ public class Student {
 	
 	@Column(name = "year")
 	private String year;
+	
+	public int getDepartmentId() {
+		return departmentId;
+	}
+	
+	public void setDepartmentId(int departmentId) {
+		this.departmentId = departmentId;
+	}
 
 	public String getYear() {
 		return year;
@@ -39,14 +47,6 @@ public class Student {
 
 	public void setYear(String year) {
 		this.year = year;
-	}
-
-	public int getDepartmentId() {
-		return departmentId;
-	}
-
-	public void setDepartmentId(int departmentId) {
-		this.departmentId = departmentId;
 	}
 
 	public int getCollegeId() {
