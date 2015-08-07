@@ -17,7 +17,7 @@ public interface CollegeDAO {
 	void addDepartments(List<Department> department);
 	public List<Department> getAllDepartments(int collegeId);
 	public void deleteDepartment(int departmentId);
-	Department getDepartment(int studentId);
+	Department getDepartment(int departmentId);
 	void updateDepartment(Department department);
 	
 	public List<Teacher> getAllTeachers(int collegeId);
