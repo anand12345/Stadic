@@ -8,16 +8,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.google.gson.Gson;
 import com.resoneuronance.campus.web.bo.StudentBO;
 import com.resoneuronance.campus.web.bo.domain.StudentDepartment;
 import com.resoneuronance.campus.web.bo.domain.StudentTeacher;
 import com.resoneuronance.campus.web.domain.Student;
-import com.resoneuronance.campus.web.domain.StudentRegID;
 import com.resoneuronance.campus.web.domain.UserSession;
 import com.resoneuronance.campus.web.domain.UserType;
 import com.resoneuronance.campus.web.util.Constants;
@@ -40,7 +37,7 @@ public class StudentController implements Constants {
 	}
 
 	@RequestMapping(value = "/studentRegistration", method = RequestMethod.POST)
-	public RedirectView registerStudent(@ModelAttribute(STUDENT_OBJECT) Student student,@RequestParam("collegeName") String college,
+	public RedirectView registerStudent(@ModelAttribute(STUDENT_OBJECT) Student student,@RequestParam(COLLEGE_NAME_ATTR) String college,
 			@RequestParam("departmentName") String departmentName,ModelMap model) {
 		
 		RedirectView view = new RedirectView();
@@ -56,9 +53,9 @@ public class StudentController implements Constants {
 	}
 	
 	@RequestMapping(value = "/studentLogin", method = RequestMethod.POST)
-	public RedirectView teacherLogin(@RequestParam(REG_ID) String regId,@ModelAttribute(STUDENT_OBJECT) Student student,@RequestParam("collegeName") String college,ModelMap model) {
+	public RedirectView teacherLogin(@ModelAttribute(STUDENT_OBJECT) Student student,@RequestParam(COLLEGE_NAME_ATTR) String college,ModelMap model) {
 		RedirectView view = new RedirectView();
-		if(!studentBo.login(student, college,regId)) {
+		if(!studentBo.login(student, college)) {
 			view.setUrl(REDIRECT_URL);
 			resultMsg = "Incorrect credentials!";
 		}
@@ -162,22 +159,5 @@ public class StudentController implements Constants {
 		return STUDENT_PROFILE_PAGE;
 	}
 	
-	/*Android specific URLs*/
-	
-	@RequestMapping(value = "/shareRegId", method= RequestMethod.POST)
-	public @ResponseBody String tagTeachers(@RequestParam(value = REG_ID) String regId,ModelMap model) {
-		//studentBo.saveRegId(regId);
-		StudentRegID id = new Gson().fromJson(regId, StudentRegID.class);
-		System.out.println(id.getRegId());
-		return "Done!";
-	}
-	
-	@RequestMapping(value = "/loginStudentAndroid", method= RequestMethod.POST)
-	public @ResponseBody String loginStudentAndroid(@RequestParam(value = "student") String student,ModelMap model) {
-		//studentBo.saveRegId(regId);
-		Student st = new Gson().fromJson(student, Student.class);
-		System.out.println(st.getEmail());
-		return "Done!";
-	}
 	
 }

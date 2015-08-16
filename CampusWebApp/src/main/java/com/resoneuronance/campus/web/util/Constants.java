@@ -50,7 +50,10 @@ public interface Constants {
 	String SESSION_OBJECT = "session";
 	String COLLEGE_OBJECT = "college";
 	String LOGIN_ERROR = "loginError";
+	String COLLEGE_NAME_ATTR = "collegeName";
 	
 	String GOOGLE_SERVER_KEY = "AIzaSyC-YW_io96FXJaVDmCqw02WxGbkNF3XAD4";
 	String MESSAGE_KEY = "message";
+	String RESPONSE_INVALID = "INVALID";
+	String RESPONSE_OK = "OK";
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.Gson;
 import com.resoneuronance.campus.web.bo.domain.Student;
 import com.resoneuronance.campus.web.bo.domain.StudentDepartment;
 import com.resoneuronance.campus.web.bo.domain.StudentTeacher;
@@ -53,7 +54,7 @@ public class StudentBOImpl implements StudentBO {
 	}
 	
 	@Override
-	public boolean login(com.resoneuronance.campus.web.domain.Student inputStudent, String collegeName, String regId) {
+	public boolean login(com.resoneuronance.campus.web.domain.Student inputStudent, String collegeName) {
 		com.resoneuronance.campus.web.domain.Student student = studentDao.getStudent(inputStudent.getEmail());
 		if(student==null || StringUtils.isBlank(student.getPassword()) || !StringUtils.equals(student.getPassword(), inputStudent.getPassword())) {
 			return false;
@@ -61,17 +62,16 @@ public class StudentBOImpl implements StudentBO {
 		College college = studentDao.getCollege(student.getCollegeId());
 		if(StringUtils.equals(college.getName(), collegeName)) {
 			prepareStudent(college,student);
-			storeRegId(regId);
 			return true;
 		}
 		return false;
 	}
 	
-	private void storeRegId(String regId) {
-		StudentRegID studentRegID = new StudentRegID();
-		studentRegID.setRegId(regId);
-		studentRegID.setStudentId(currentStudent.getId());
+	@Override
+	public void storeRegId(String regId) {
+		StudentRegID studentRegID = new Gson().fromJson(regId, StudentRegID.class);
 		studentDao.addRegId(studentRegID);
+		System.out.println("Reg ID received as .." + studentRegID.getRegId());
 	}
 
 	@Override
@@ -290,11 +290,6 @@ public class StudentBOImpl implements StudentBO {
 		studentDao.addDepartmentMapping(mapping);
 	}
 
-	@Override
-	public void saveRegId(StudentRegID regId) {
-		System.out.println("Reg ID Found as :" + regId.getStudentId());
-	}
-	
 	@Override
 	public void prepareCurrentStudent(Student student) {
 		com.resoneuronance.campus.web.domain.Student st = studentDao.getStudent(student.getEmail());

@@ -7,12 +7,11 @@ import com.resoneuronance.campus.web.bo.domain.StudentTeacher;
 import com.resoneuronance.campus.web.domain.College;
 import com.resoneuronance.campus.web.domain.Department;
 import com.resoneuronance.campus.web.domain.Student;
-import com.resoneuronance.campus.web.domain.StudentRegID;
 import com.resoneuronance.campus.web.domain.Teacher;
 
 public interface StudentBO {
 
-	boolean login(Student student, String collegeName, String regId);
+	boolean login(Student student, String collegeName);
 	boolean registerStudent(Student teacher, String collegeName, String departmentName);
 	com.resoneuronance.campus.web.bo.domain.Student getCurrentStudent();
 	List<Teacher> getCurrentTeachers();
@@ -26,7 +25,7 @@ public interface StudentBO {
 	void tagDepartments(int[] departmentIds);
 	void prepareStudentDepartments();
 	void updateStudentToDepartmentMapping(StudentDepartment studentDepartment);
-	void saveRegId(StudentRegID regId);
 	void prepareStudent(College college, Student student);
 	void prepareCurrentStudent(com.resoneuronance.campus.web.bo.domain.Student student);
+	void storeRegId(String studentRegIdJson);
 }
