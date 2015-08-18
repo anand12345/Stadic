@@ -27,7 +27,7 @@ public class MainAndroidController {
 	}
 	
 	@RequestMapping(value = "/getAllColleges", method= RequestMethod.POST)
-	public @ResponseBody String tagTeachers(ModelMap model) {
+	public @ResponseBody String getAllColleges(ModelMap model) {
 		String colleges = new Gson().toJson(collegeBo.getCollegeNames());
 		return colleges;
 	}

@@ -2,6 +2,7 @@ package com.resoneuronance.campus.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import com.resoneuronance.campus.web.bo.StudentBO;
 import com.resoneuronance.campus.web.domain.Student;
 import com.resoneuronance.campus.web.util.Constants;
 
+@Controller
 public class StudentAndroidController implements Constants {
 
 	private StudentBO studentBo;
@@ -35,9 +37,9 @@ public class StudentAndroidController implements Constants {
 	}
 	
 	@RequestMapping(value = "/loginStudentAndroid", method= RequestMethod.POST)
-	public @ResponseBody String loginStudentAndroid(@RequestParam(value = STUDENT_OBJECT) String student,@RequestParam(value = COLLEGE_NAME_ATTR) String collegeName,ModelMap model) {
-		//studentBo.saveRegId(regId);
+	public @ResponseBody String loginStudentAndroid(@RequestParam(value = STUDENT_OBJECT) String student,@RequestParam(value = COLLEGE_NAME_ATTR) String collegeName) {
 		Student st = new Gson().fromJson(student, Student.class);
+		System.out.println("Got Student :" + st.getEmail());
 		if(studentBo.login(st, collegeName)) {
 			return new Gson().toJson(studentBo.getCurrentStudent());
 		}
