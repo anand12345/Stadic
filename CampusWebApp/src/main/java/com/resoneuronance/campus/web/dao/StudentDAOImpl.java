@@ -214,4 +214,15 @@ public class StudentDAOImpl implements StudentDAO {
 		session.close();
 	}
 
+	@Override
+	public List<StudentRegID> getRegIds(int studentId) {
+		List<StudentRegID> regIds = new ArrayList<StudentRegID>();
+		Session session = this.sessionFactory.openSession();
+		Query query = session.createQuery("from StudentRegID where studentId=:id");
+		query.setParameter("id", studentId);
+		regIds = query.list();
+		session.close();
+		return regIds;
+	}
+
 }

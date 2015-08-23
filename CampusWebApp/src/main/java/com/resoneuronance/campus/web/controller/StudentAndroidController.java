@@ -29,9 +29,8 @@ public class StudentAndroidController implements Constants {
 		this.studentBo = studentBo;
 	}
 	
-	@RequestMapping(value = "/shareRegId", method= RequestMethod.POST)
-	public @ResponseBody String tagTeachers(@RequestParam(value = REG_ID) String regId,ModelMap model) {
-		//studentBo.saveRegId(regId);
+	@RequestMapping(value = "/shareStudentRegId", method= RequestMethod.POST)
+	public @ResponseBody String shareRegId(@RequestParam(value = REG_ID) String regId,ModelMap model) {
 		studentBo.storeRegId(regId);
 		return RESPONSE_OK;
 	}

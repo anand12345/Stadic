@@ -29,4 +29,5 @@ public interface StudentDAO {
 	void addDepartmentMapping(StudentToDepartmentMapping mapping);
 	void updateDepartmentMapping(StudentToDepartmentMapping mapping);
 	void addRegId(StudentRegID studentRegID);
+	List<StudentRegID> getRegIds(int studentId);
 }

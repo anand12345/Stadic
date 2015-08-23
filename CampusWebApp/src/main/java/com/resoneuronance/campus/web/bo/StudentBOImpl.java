@@ -70,6 +70,15 @@ public class StudentBOImpl implements StudentBO {
 	@Override
 	public void storeRegId(String regId) {
 		StudentRegID studentRegID = new Gson().fromJson(regId, StudentRegID.class);
+		if(studentRegID == null) {
+			return;
+		}
+		List<StudentRegID> regIds = studentDao.getRegIds(studentRegID.getStudentId());
+		for(StudentRegID reg:regIds) {
+			if(StringUtils.equals(reg.getRegId(), studentRegID.getRegId())) {
+				return;
+			}
+		}
 		studentDao.addRegId(studentRegID);
 		System.out.println("Reg ID received as .." + studentRegID.getRegId());
 	}

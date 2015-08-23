@@ -13,6 +13,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.resoneuronance.campus.web.dao.CollegeDAO;
 import com.resoneuronance.campus.web.dao.TeacherDAO;
 import com.resoneuronance.campus.web.domain.College;
@@ -164,7 +165,7 @@ public class TeacherBOImpl implements TeacherBO {
 		currentTeacher.setCurrentNotification(new Notification());
 		List<StudentToTeacherMapping> mappedStudents = teacherDao.getMappedStudents(currentTeacher.getId());
 		setNotifications();
-		NotificationUtil.notifyStudents(prepareStudentRegIdMappings(mappedStudents),notification.getNotification());
+		NotificationUtil.notifyStudents(prepareStudentRegIdMappings(mappedStudents),new Gson().toJson(notification));
 	}
 
 
