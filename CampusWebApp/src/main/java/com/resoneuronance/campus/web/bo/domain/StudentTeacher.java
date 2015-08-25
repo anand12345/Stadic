@@ -1,6 +1,9 @@
 package com.resoneuronance.campus.web.bo.domain;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.resoneuronance.campus.web.domain.Notification;
 
@@ -24,6 +27,9 @@ public class StudentTeacher {
 		this.email = email;
 	}
 	public List<Notification> getNotifications() {
+		if(notifications == null) {
+			notifications = new ArrayList<Notification>();
+		}
 		return notifications;
 	}
 	public void setNotifications(List<Notification> notifications) {

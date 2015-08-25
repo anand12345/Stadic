@@ -5,6 +5,7 @@ import java.util.List;
 import com.resoneuronance.campus.web.domain.College;
 import com.resoneuronance.campus.web.domain.Department;
 import com.resoneuronance.campus.web.domain.Notification;
+import com.resoneuronance.campus.web.domain.Student;
 import com.resoneuronance.campus.web.domain.StudentRegID;
 import com.resoneuronance.campus.web.domain.StudentToTeacherMapping;
 import com.resoneuronance.campus.web.domain.Teacher;
@@ -24,5 +25,6 @@ public interface TeacherDAO {
 	Department getDepartment(int id);
 	List<StudentToTeacherMapping> getMappedStudents(int teacherId);
 	List<StudentRegID> getStudentRegId(int studentId);
+	Student getFilteredStudent(Notification notification,int studentId);
 	
 }

@@ -164,10 +164,21 @@ public class TeacherBOImpl implements TeacherBO {
 		teacherDao.addNotification(currentTeacher.getCurrentNotification());
 		currentTeacher.setCurrentNotification(new Notification());
 		List<StudentToTeacherMapping> mappedStudents = teacherDao.getMappedStudents(currentTeacher.getId());
+		List<StudentToTeacherMapping> fileteredMappedStudents = filterMappedStudents(mappedStudents,notification);
 		setNotifications();
-		NotificationUtil.notifyStudents(prepareStudentRegIdMappings(mappedStudents),new Gson().toJson(notification));
+		NotificationUtil.notifyStudents(prepareStudentRegIdMappings(fileteredMappedStudents),new Gson().toJson(notification));
 	}
 
+
+	private List<StudentToTeacherMapping> filterMappedStudents(List<StudentToTeacherMapping> mappedStudents, Notification notification) {
+		List<StudentToTeacherMapping> fileteredMappedStudents = new ArrayList<StudentToTeacherMapping>();
+		for(StudentToTeacherMapping studentToTeacherMapping:mappedStudents) {
+			if(teacherDao.getFilteredStudent(notification,studentToTeacherMapping.getStudentId()) != null) {
+				fileteredMappedStudents.add(studentToTeacherMapping);
+			}
+		}
+		return fileteredMappedStudents;
+	}
 
 	private List<StudentRegID> prepareStudentRegIdMappings(List<StudentToTeacherMapping> mappedStudents) {
 		List<StudentRegID> studentRegIds = new ArrayList<StudentRegID>();
