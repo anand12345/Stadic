@@ -173,21 +173,4 @@ public class MainController implements Constants {
 		}
 		return result;
 	}
-	
-	
-	
-	
-	
-	
-	
-	//TODO : To be removed later
-	
-	/*@RequestMapping(value = "/{name}", method = RequestMethod.GET)
-	public String temp(@PathVariable String name, ModelMap model) {
-
-		System.out.println("Showing " + name);
-		return name;
-
-	}*/
-	
 }

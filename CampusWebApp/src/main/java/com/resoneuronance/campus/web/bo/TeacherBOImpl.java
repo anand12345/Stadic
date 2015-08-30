@@ -161,7 +161,7 @@ public class TeacherBOImpl implements TeacherBO {
 		notification.setDate(new Date());
 		currentTeacher.setCurrentNotification(notification);
 		FileUtils.uploadTeacherDocument(file, currentTeacher);
-		teacherDao.addNotification(currentTeacher.getCurrentNotification());
+		teacherDao.addNotification(notification);
 		currentTeacher.setCurrentNotification(new Notification());
 		List<StudentToTeacherMapping> mappedStudents = teacherDao.getMappedStudents(currentTeacher.getId());
 		List<StudentToTeacherMapping> fileteredMappedStudents = filterMappedStudents(mappedStudents,notification);
